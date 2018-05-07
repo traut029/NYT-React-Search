@@ -39,6 +39,23 @@ db.Article.find()
     return res.json(response)
 })
 })
+app.delete("/api/articles", function (req, res) {
+    console.log("DELETE ROUTE")
+    console.log("req.body:")
 
+    console.log(req.body)
+
+    let id=req.body.data
+    db.Article.deleteOne({_id:id})
+    .then(function(resonse){
+        return res.json(response)
+    })
+    // .catch(function (err) {
+    //     // If an error occurred, send it to the client
+    //     console.log("ERROR ERROR ERROR")
+    //     console.log(err)
+    //     return res.json(err);
+    // });
+})
 
 module.exports = app;

@@ -70,5 +70,10 @@ export default {
     },
     getArticles:function(){
         return axios.get("/api/articles")
+    },
+    deleteArticle:function(data){
+        console.log("DELETE ARTICLE API CALL DATA:")
+        console.log(data)
+        return axios.delete("/api/articles?",{data:{data:data}})
     }
 };

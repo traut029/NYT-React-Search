@@ -30,7 +30,7 @@ import API from "../utils/API";
         onChange={props.handleInputChange}
         />
         <br /><br />
-        <input type="button" value="Search" id="searchButton"onClick={() => props.clickSearch()} />
+        <input type="button" value="Search" id="searchButton"onClick={() => props.clickSearch(props.id)} />
       </form>
     )
   

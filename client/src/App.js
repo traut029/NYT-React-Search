@@ -44,17 +44,18 @@ class App extends Component {
       })
   }
   clickSave=key=>{
+    console.log(key)
     console.log(this.state.articles[key])
     API.saveArticle(this.state.articles[key])
   }
-  populateSaved=(event)=>{
+  //Call saved articles
+  populateSaved=()=>{
     
-    event.preventDefault()
     console.log("POPULATE SAVE RAN2")
     API.getArticles()
     .then(res=>{
       console.log(res)
-      // window.location = "/saved"
+
       console.log(res.data)
       let allArticles=[]
       res.data.forEach(function(element) {
@@ -74,13 +75,24 @@ class App extends Component {
       console.log(this.state.savedArticles)
     })
   }
+  //Call saved Articles on load
+  componentWillMount = () => {
+    this.populateSaved();
+  }
+  //Delete function
+  clickDelete=(id)=>{
+    console.log(id)
+   API.deleteArticle(id)
+   this.populateSaved();
+  }
   render() {
     return (
       <Router>
         <div className="App"
         >
           <NavBar 
-           populateSaved={this.populateSaved}/>
+          populateSaved={this.populateSaved}
+       />
 
           <Route exact path="/" render={(props) => <Search
             handleInputChange={this.handleInputChange}
@@ -101,11 +113,11 @@ class App extends Component {
           <Route exact path="/saved" render=
           {()=>this.state.savedArticles.map((art,index)=>(<Saved
             key={index}
-            id={art._id}
+            id={art.id}
             title={art.title}
             url={art.url}
             date={art.date}
-            
+            clickDelete={this.clickDelete}
           />))} />
         </div>
       </Router>

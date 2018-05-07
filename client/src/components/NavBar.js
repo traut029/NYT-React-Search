@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -6,21 +7,21 @@ const Navbar = (props) => (
     <div>
 
         <nav className="navbar navbar-light bg-light">
-            <a
-                onClick={() => props.handlePageChange("Home")}
-                className={
-                props.currentPage === "Home" ? "nav-link active" : "nav-link"
-                }
+            <Link 
+                 to="/"
+                 className={
+                    window.location.pathname === "/" ? "nav-link active" : "nav-link"
+                  }
             >Home
-            </a>
-            <a
-                onClick={() => props.handlePageChange("About")}
+            </Link>
+            <Link onClick={() => props.populateSaved()}
+                to="/saved"
                 className={
-                props.currentPage === "About" ? "nav-link active" : "nav-link"
-                }
+                    window.location.pathname === "/saved" ? "nav-link active" : "nav-link"
+                  }
             >
                 Saved
-            </a>
+            </Link>
         </nav>
     </div>
 );
