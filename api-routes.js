@@ -12,18 +12,21 @@ app.post("/api/articles", function (req, res) {
 
  const newArticle ={   
     title: req.body.headline.main,
-    url:req.body.pub_date,
-    date:req.body.web_url
+    url:req.body.web_url,
+    date:req.body.pub_date
 }
 
     db.Article.create(newArticle)
         .then(function (dbArticle) {
             // View the added result in the console
             console.log(dbArticle)
+            console.log("THEN FUNCTION RAN")
             return res.json(JSON.stringify(dbArticle))
         })
         .catch(function (err) {
             // If an error occurred, send it to the client
+            console.log("ERROR ERROR ERROR")
+            console.log(err)
             return res.json(err);
         });
 
@@ -33,7 +36,7 @@ app.post("/api/articles", function (req, res) {
 app.get("/api/articles",function(req,res){
 db.Article.find()
 .then(function(response){
-    return res.json(JSON.stringify(response))
+    return res.json(response)
 })
 })
 
