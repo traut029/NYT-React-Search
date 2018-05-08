@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Connect to the Mongo DB
-// mongoose.Promise = Promise;
+mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytreact");
 
 // Send every request to the React app
